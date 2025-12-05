@@ -1,4 +1,4 @@
-package com.iqonic.provider
+package com.taimo.providerapp
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 

@@ -29,7 +29,11 @@ class AppTheme {
       backgroundColor: Colors.white,
     ),
     cardColor: cardColor,
-    appBarTheme: const AppBarTheme(systemOverlayStyle: SystemUiOverlayStyle(statusBarIconBrightness: Brightness.light, statusBarColor: primaryColor)),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: primaryColor,
+      iconTheme: IconThemeData(color: Colors.white),
+      systemOverlayStyle: SystemUiOverlayStyle(statusBarIconBrightness: Brightness.light, statusBarColor: primaryColor),
+    ),
     dialogTheme: DialogThemeData(backgroundColor: Colors.white, surfaceTintColor: Colors.transparent, shape: dialogShape()),
     navigationBarTheme: NavigationBarThemeData(labelTextStyle: WidgetStateProperty.all(primaryTextStyle(size: 10))),
     checkboxTheme: CheckboxThemeData(
@@ -54,6 +58,8 @@ class AppTheme {
       outlineVariant: borderColor.withValues(alpha: 0.4),
     ),
     appBarTheme: const AppBarTheme(
+      backgroundColor: primaryColor,
+      iconTheme: IconThemeData(color: Colors.white),
       systemOverlayStyle: SystemUiOverlayStyle(statusBarIconBrightness: Brightness.light, statusBarColor: primaryColor),
     ),
     scaffoldBackgroundColor: scaffoldColorDark,

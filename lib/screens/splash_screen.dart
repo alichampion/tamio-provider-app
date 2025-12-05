@@ -109,28 +109,30 @@ class SplashScreenState extends State<SplashScreen> {
             width: context.width(),
             fit: BoxFit.cover,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(appLogo, height: 120, width: 120),
-              32.height,
-              Text(APP_NAME, style: boldTextStyle(size: 26, color: appStore.isDarkMode ? Colors.white : Colors.black), textAlign: TextAlign.center),
-              16.height,
-              if (appNotSynced)
-                Observer(
-                  builder: (_) => appStore.isLoading
-                      ? LoaderWidget().center()
-                      : TextButton(
-                          child: Text(languages.reload, style: boldTextStyle()),
-                          onPressed: () {
-                            appStore.setLoading(true);
-                            init();
-                          },
-                        ),
-                ),
-            ],
+          Center(
+            child: Image.asset(
+              appLogo,
+              width: context.width() * 0.7,
+              fit: BoxFit.contain,
+            ),
           ),
+          if (appNotSynced)
+            Positioned(
+              bottom: 100,
+              left: 0,
+              right: 0,
+              child: Observer(
+                builder: (_) => appStore.isLoading
+                    ? LoaderWidget().center()
+                    : TextButton(
+                        child: Text(languages.reload, style: boldTextStyle()),
+                        onPressed: () {
+                          appStore.setLoading(true);
+                          init();
+                        },
+                      ),
+              ),
+            ),
         ],
       ),
     );

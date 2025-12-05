@@ -88,6 +88,7 @@ dependencies:
   playx_version_update: ^1.0.0
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.13.1
   flutter_test:
     sdk: flutter
   build_runner: ^2.7.0

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const ryColor = Color(0xfff1f1f6);
-const lightPrimaryColor = Color(0xffebebf7);
+const lightPrimaryColor = Color(0xFFebfaff);
 
 const cardColor = Color(0xFFF6F7F9);
 

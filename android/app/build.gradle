@@ -30,7 +30,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.iqonic.provider"
+    namespace "com.taimo.providerapp"
     compileSdk 36
     ndkVersion "29.0.13599879"
 
@@ -49,7 +49,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.iqonic.provider"
+        applicationId "com.taimo.providerapp"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion 36
         versionCode 103
