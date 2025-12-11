@@ -1,7 +1,7 @@
 name: handyman_provider_flutter
 description: A new Flutter project.
 publish_to: 'none'
-version: 11.15.1+103
+version: 12.2.2+103
 
 environment:
   sdk: ">=3.0.0 <4.0.0"

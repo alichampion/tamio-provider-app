@@ -47,8 +47,7 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>EnableBackgroundLocationUpdates</key>
 	<true/>
-	<key>GADApplicationIdentifier</key>
-	<string>Add your key</string>
+
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>ppemerchantsdkv1</string>
@@ -69,7 +68,7 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>yourdomain.com</key>
+			<key>tamioo.mohrainvest.com</key>
 			<dict>
 				<key>NSIncludesSubdomains</key>
 				<true/>

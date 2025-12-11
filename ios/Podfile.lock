@@ -1558,7 +1558,7 @@ PODS:
   - PurchasesHybridCommon (17.18.0):
     - RevenueCat (= 5.48.0)
   - razorpay-core-pod (1.0.3)
-  - razorpay-pod (1.5.1):
+  - razorpay-pod (1.5.2):
     - razorpay-core-pod (= 1.0.3)
   - razorpay_flutter (1.1.10):
     - Flutter
@@ -1878,7 +1878,7 @@ SPEC CHECKSUMS:
   purchases_flutter: 965d6a6cd910b5af0cf381af725afc2f52a9e747
   PurchasesHybridCommon: 31ec0e6adbe08e27e9b5eead7b4b2337b5baa849
   razorpay-core-pod: ef0309dbf8e3e5a1330f6cad89dcf9226d8ef758
-  razorpay-pod: b510edf1e4ff7f1955dec9c2ac6f38f5e45873b0
+  razorpay-pod: a9cb6e158aee8754053b147008eff6b4897789c8
   razorpay_flutter: 84b3bfd206ae9c9c2a9ba585524a1b3d8102b6c1
   RecaptchaInterop: 11e0b637842dfb48308d242afc3f448062325aba
   RevenueCat: 1e61140a343a77dc286f171b3ffab99ca09a4b57
