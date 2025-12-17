@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:handyman_provider_flutter/locale/applocalizations.dart';
@@ -145,6 +146,14 @@ class _MyAppState extends State<MyApp> {
   }
 
   void init() async {
+    // Set system navigation bar transparent globally for all screens
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarDividerColor: Colors.transparent,
+      ),
+    );
+    
     afterBuildCreated(() {
       int val = getIntAsync(THEME_MODE_INDEX, defaultValue: THEME_MODE_SYSTEM);
 

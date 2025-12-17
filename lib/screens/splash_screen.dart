@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:handyman_provider_flutter/auth/sign_in_screen.dart';
 import 'package:handyman_provider_flutter/handyman/handyman_dashboard_screen.dart';
@@ -26,8 +27,20 @@ class SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     afterBuildCreated(() {
-      setStatusBarColor(Colors.transparent, statusBarBrightness: Brightness.dark, statusBarIconBrightness: appStore.isDarkMode ? Brightness.light : Brightness.dark);
-
+      setStatusBarColor(
+        Colors.transparent,
+        statusBarBrightness: Brightness.dark,
+        statusBarIconBrightness:
+            appStore.isDarkMode ? Brightness.light : Brightness.dark,
+      );
+      // Set navigation bar to transparent to prevent black bar
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          systemNavigationBarColor: Colors.transparent,
+          systemNavigationBarIconBrightness:
+              appStore.isDarkMode ? Brightness.light : Brightness.dark,
+        ),
+      );
       init();
     });
   }
@@ -100,40 +113,35 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Image.asset(
-            appStore.isDarkMode ? splash_background : splash_light_background,
-            height: context.height(),
-            width: context.width(),
-            fit: BoxFit.cover,
-          ),
-          Center(
-            child: Image.asset(
-              appLogo,
-              width: context.width() * 0.7,
-              fit: BoxFit.contain,
-            ),
-          ),
-          if (appNotSynced)
-            Positioned(
-              bottom: 100,
-              left: 0,
-              right: 0,
-              child: Observer(
-                builder: (_) => appStore.isLoading
-                    ? LoaderWidget().center()
-                    : TextButton(
-                        child: Text(languages.reload, style: boldTextStyle()),
-                        onPressed: () {
-                          appStore.setLoading(true);
-                          init();
-                        },
-                      ),
+      backgroundColor: context.scaffoldBackgroundColor,
+      extendBody: true,
+      extendBodyBehindAppBar: true,
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        color: context.scaffoldBackgroundColor,
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            if (appNotSynced)
+              Positioned(
+                bottom: 100,
+                left: 0,
+                right: 0,
+                child: Observer(
+                  builder: (_) => appStore.isLoading
+                      ? LoaderWidget().center()
+                      : TextButton(
+                          child: Text(languages.reload, style: boldTextStyle()),
+                          onPressed: () {
+                            appStore.setLoading(true);
+                            init();
+                          },
+                        ),
+                ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }
