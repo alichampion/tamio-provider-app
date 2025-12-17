@@ -142,18 +142,24 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    
+    // Enable edge-to-edge mode
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+
+    // Set system bars to white (matching scaffold) to prevent black safe area
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.white,
+        statusBarIconBrightness: Brightness.dark,
+        systemNavigationBarColor: Colors.white,
+        systemNavigationBarDividerColor: Colors.white,
+        systemNavigationBarIconBrightness: Brightness.dark,
+      ),
+    );
     init();
   }
 
   void init() async {
-    // Set system navigation bar transparent globally for all screens
-    SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-        systemNavigationBarColor: Colors.transparent,
-        systemNavigationBarDividerColor: Colors.transparent,
-      ),
-    );
-    
     afterBuildCreated(() {
       int val = getIntAsync(THEME_MODE_INDEX, defaultValue: THEME_MODE_SYSTEM);
 
@@ -178,32 +184,30 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return RestartAppWidget(
-      child: SafeArea(
-        top: false,
-        child: Observer(
-          builder: (_) => MaterialApp(
-            debugShowCheckedModeBanner: false,
-            navigatorKey: navigatorKey,
-            home: SplashScreen(),
-            theme: AppTheme.lightTheme,
-            darkTheme: AppTheme.darkTheme,
-            themeMode: appStore.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-            supportedLocales: LanguageDataModel.languageLocales(),
-            localizationsDelegates: const [
-              AppLocalizations(),
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            builder: (context, child) {
-              return MediaQuery(
-                data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(1.0)),
-                child: child!,
-              );
-            },
-            localeResolutionCallback: (locale, supportedLocales) => locale,
-            locale: Locale(appStore.selectedLanguageCode),
-          ),
+      child: Observer(
+        builder: (_) => MaterialApp(
+          debugShowCheckedModeBanner: false,
+          navigatorKey: navigatorKey,
+          home: SplashScreen(),
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: appStore.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+          supportedLocales: LanguageDataModel.languageLocales(),
+          localizationsDelegates: const [
+            AppLocalizations(),
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          builder: (context, child) {
+            return MediaQuery(
+              data: MediaQuery.of(context)
+                  .copyWith(textScaler: const TextScaler.linear(1.0)),
+              child: child!,
+            );
+          },
+          localeResolutionCallback: (locale, supportedLocales) => locale,
+          locale: Locale(appStore.selectedLanguageCode),
         ),
       ),
     );

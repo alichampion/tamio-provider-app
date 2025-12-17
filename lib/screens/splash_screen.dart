@@ -113,35 +113,38 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.scaffoldBackgroundColor,
-      extendBody: true,
-      extendBodyBehindAppBar: true,
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: context.scaffoldBackgroundColor,
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            if (appNotSynced)
-              Positioned(
-                bottom: 100,
-                left: 0,
-                right: 0,
-                child: Observer(
-                  builder: (_) => appStore.isLoading
-                      ? LoaderWidget().center()
-                      : TextButton(
-                          child: Text(languages.reload, style: boldTextStyle()),
-                          onPressed: () {
-                            appStore.setLoading(true);
-                            init();
-                          },
-                        ),
-                ),
+      backgroundColor: Colors.white,
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          // Centered logo to match native splash (168×185)
+          Center(
+            child: Image.asset(
+              'assets/images/splash_background.png',
+              width: 166,
+              height: 183,
+              fit: BoxFit.contain,
+            ),
+          ),
+          // Error handling UI at bottom
+          if (appNotSynced)
+            Positioned(
+              bottom: 100,
+              left: 0,
+              right: 0,
+              child: Observer(
+                builder: (_) => appStore.isLoading
+                    ? LoaderWidget().center()
+                    : TextButton(
+                        child: Text(languages.reload, style: boldTextStyle()),
+                        onPressed: () {
+                          appStore.setLoading(true);
+                          init();
+                        },
+                      ),
               ),
-          ],
-        ),
+            ),
+        ],
       ),
     );
   }
